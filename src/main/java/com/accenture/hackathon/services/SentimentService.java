@@ -1,22 +1,31 @@
 package com.accenture.hackathon.services;
 
-import com.accenture.hackathon.services.iod.SentimentAnalysisService;
+import com.accenture.hackathon.services.iod.CallbackSentimentAnalysisService;
 import com.accenture.hackathon.util.ApiCallback;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisLanguage;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisResponse;
+import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SentimentService {
+    private static final SentimentAnalysisLanguage LANG = SentimentAnalysisLanguage.eng;
+
+    private final CallbackSentimentAnalysisService callbackSentimentAnalysisService;
     private final SentimentAnalysisService sentimentAnalysisService;
 
     @Autowired
-    public SentimentService(SentimentAnalysisService sentimentAnalysisService) {
+    public SentimentService(CallbackSentimentAnalysisService callbackSentimentAnalysisService, SentimentAnalysisService sentimentAnalysisService) {
+        this.callbackSentimentAnalysisService = callbackSentimentAnalysisService;
         this.sentimentAnalysisService = sentimentAnalysisService;
     }
 
     public void analyzeSentiment(String text, ApiCallback<SentimentAnalysisResponse> callback) {
-        sentimentAnalysisService.analyzeSentimentForText(text, SentimentAnalysisLanguage.eng, callback);
+        callbackSentimentAnalysisService.analyzeSentimentForText(text, LANG, callback);
+    }
+
+    public SentimentAnalysisResponse analyzeSentiment(String text) {
+        return sentimentAnalysisService.analyzeSentimentForText(text, LANG);
     }
 }

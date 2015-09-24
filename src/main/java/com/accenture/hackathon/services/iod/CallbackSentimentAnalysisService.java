@@ -9,7 +9,7 @@ import retrofit.http.Query;
 /**
  * Interface representing the SentimentAnalysis API
  */
-public interface SentimentAnalysisService {
+public interface CallbackSentimentAnalysisService {
 
     String URL = "/api/sync/analyzesentiment/v1";
 

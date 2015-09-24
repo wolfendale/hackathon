@@ -1,7 +1,10 @@
 package com.accenture.hackathon;
 
+import com.accenture.hackathon.batch.FeedbackBatch;
+import com.accenture.hackathon.batch.TestFeedbackBatch;
 import com.accenture.hackathon.models.APIKey;
-import com.accenture.hackathon.services.iod.SentimentAnalysisService;
+import com.accenture.hackathon.services.iod.CallbackSentimentAnalysisService;
+import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisService;
 import com.hp.autonomy.iod.client.converter.IodConverter;
 import com.hp.autonomy.iod.client.error.IodErrorHandler;
 import com.hp.autonomy.iod.client.util.ApiKeyRequestInterceptor;
@@ -28,9 +31,21 @@ public class Application {
         .build();
     }
 
+    //we can try both async + sync controller method so both are included as injectable
+
+    @Bean
+    public CallbackSentimentAnalysisService callbackSentimentAnalysisService(RestAdapter restAdapter) {
+         return restAdapter.create(CallbackSentimentAnalysisService.class);
+    }
+
     @Bean
     public SentimentAnalysisService sentimentAnalysisService(RestAdapter restAdapter) {
-         return restAdapter.create(SentimentAnalysisService.class);
+        return restAdapter.create(SentimentAnalysisService.class);
+    }
+
+    @Bean
+    FeedbackBatch feedbackBatch() {
+        return new TestFeedbackBatch();
     }
 
     @Bean
