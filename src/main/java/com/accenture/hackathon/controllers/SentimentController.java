@@ -13,6 +13,16 @@ import retrofit.converter.JacksonConverter;
 @RestController
 public class SentimentController {
 
+//    private SentimentAnalysisService service;
+//
+//    public SentimentAnalysisService getService() {
+//        return service;
+//    }
+//
+//    public void setService(SentimentAnalysisService service) {
+//        this.service = service;
+//    }
+
     @RequestMapping("/sentiment")
     public String sentiment() {
 
