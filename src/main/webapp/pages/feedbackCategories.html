@@ -1,0 +1,49 @@
+<div class="panel panel-success" ng-controller="fmtController">
+    <div class="panel-heading">Add New Category</div>
+    <div class="panel-body">
+        <div class="">
+            <div class="form-group">
+                <label for="categoryName" class="control-label label-width">Category Name: </label>
+                <input id="categoryName" type="text" class="form-control" placeholder="Category Name">
+            </div>
+
+            <div class="form-group">
+                <label class="control-label label-width">Category Sentiment: </label>
+                <div class="checkbox">
+                    <label>
+                      <input type="radio" name="categorySentiment"> Positive
+                    </label>
+                    <label>
+                      <input type="radio" name="categorySentiment"> Neutral
+                    </label>
+                    <label>
+                      <input type="radio" name="categorySentiment"> Negative
+                    </label>
+                  </div>
+            </div>
+            <h3>Rules</h3>
+            <form class="form-inline">
+              <div class="form-group">
+                <input type="text" class="form-control" id="ruleType" placeholder="Rule Type">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="ruleParameter" placeholder="Parameter">
+              </div>
+              <button ng-click="" type="button" class="btn btn-primary btn-sm" tooltip="Add rule" tooltip-popup-delay="500">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+            </form>
+            <h3>Action</h3>
+            <div class="form-group">
+                <label for="categoryName" class="control-label label-width">Email Id: </label>
+                <input type="text" class="form-control" id="emailId" placeholder="Email Id">
+            </div>
+            <div class="form-group">
+                <button ng-click="" type="button" class="btn btn-primary" tooltip="Save" tooltip-popup-delay="500">
+                    Save Category
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
