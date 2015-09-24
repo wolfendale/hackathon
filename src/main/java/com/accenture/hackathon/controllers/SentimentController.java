@@ -1,10 +1,9 @@
 package com.accenture.hackathon.controllers;
 
 import com.accenture.hackathon.batch.FeedbackBatch;
-import com.accenture.hackathon.models.SentimentalData;
-import com.accenture.hackathon.processor.SentimentalAnalysisProcessor;
+import com.accenture.hackathon.models.SentimentData;
+import com.accenture.hackathon.processor.SentimentAnalysisProcessor;
 import com.accenture.hackathon.services.SentimentService;
-import com.accenture.hackathon.util.ApiCallback;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +29,7 @@ public class SentimentController {
     //TODO make it return JSON
 
     @RequestMapping("/sentiment")
-    public SentimentalData batchSentiment() {
+    public SentimentData sentiment() {
         //TODO pass in either a string to the feedback batch or a list of args?
         List<String> feedbackComments = feedbackBatch.getFeedback();
 
@@ -43,6 +42,6 @@ public class SentimentController {
         }
 
         //processing responses into meaningful data
-        return SentimentalAnalysisProcessor.processResponses(responses);
+        return SentimentAnalysisProcessor.processResponses(responses);
     }
 }
