@@ -1,9 +1,8 @@
 package com.accenture.hackathon.controllers;
 
 import com.accenture.hackathon.services.SentimentService;
-import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisLanguage;
+import com.accenture.hackathon.util.ApiCallback;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisResponse;
-import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +17,16 @@ public class SentimentController {
 
     private SentimentService service;
 
+    //TODO the big question is whether we are just snyc or async here - does it really matter?
+
     @RequestMapping("/sentiment")
     public String sentiment() {
+        service.analyzeSentiment("I love cats", new ApiCallback<SentimentAnalysisResponse>() {
+            @Override
+            public void success(SentimentAnalysisResponse sentimentAnalysisResponse) {
 
-        final SentimentAnalysisResponse response = service.sentiment("I like cats");
-
-        return response.toString();
+            }
+        });
+        return "Test";
     }
 }

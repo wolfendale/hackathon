@@ -1,28 +1,22 @@
 package com.accenture.hackathon.services;
 
-import com.accenture.hackathon.models.APIKey;
+import com.accenture.hackathon.services.iod.SentimentAnalysisService;
+import com.accenture.hackathon.util.ApiCallback;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisLanguage;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisResponse;
-import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SentimentService {
+    private final SentimentAnalysisService sentimentAnalysisService;
 
     @Autowired
-    public SentimentService(
-            SentimentAnalysisService service,
-            APIKey apiKey
-        ) {
-        this.service = service;
-        this.apiKey = apiKey.getKey();
+    public SentimentService(SentimentAnalysisService sentimentAnalysisService) {
+        this.sentimentAnalysisService = sentimentAnalysisService;
     }
 
-    private SentimentAnalysisService service;
-    private String apiKey;
-
-    public SentimentAnalysisResponse sentiment(String text) {
-        return service.analyzeSentimentForText(apiKey, text, SentimentAnalysisLanguage.eng);
+    public void analyzeSentiment(String text, ApiCallback<SentimentAnalysisResponse> callback) {
+        sentimentAnalysisService.analyzeSentimentForText(text, SentimentAnalysisLanguage.eng, callback);
     }
 }
