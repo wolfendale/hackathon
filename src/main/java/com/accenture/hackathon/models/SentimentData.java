@@ -1,7 +1,6 @@
 package com.accenture.hackathon.models;
 
 public class SentimentData {
-    //TODO information to be given to the frontend (through AJAX)
 
     private double averageScore;
 

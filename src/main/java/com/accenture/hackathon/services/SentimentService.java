@@ -1,12 +1,12 @@
 package com.accenture.hackathon.services;
 
 import com.accenture.hackathon.services.iod.CallbackSentimentAnalysisService;
-import com.accenture.hackathon.util.ApiCallback;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisLanguage;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisResponse;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import retrofit.Callback;
 
 @Service
 public class SentimentService {
@@ -21,7 +21,7 @@ public class SentimentService {
         this.sentimentAnalysisService = sentimentAnalysisService;
     }
 
-    public void analyzeSentiment(String text, ApiCallback<SentimentAnalysisResponse> callback) {
+    public void analyzeSentiment(String text, Callback<SentimentAnalysisResponse> callback) {
         callbackSentimentAnalysisService.analyzeSentimentForText(text, LANG, callback);
     }
 
