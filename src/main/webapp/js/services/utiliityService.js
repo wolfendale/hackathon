@@ -1,4 +1,4 @@
-testAutomationTool.service('utilityService', function($log, $http, $q,) {
+fmt.service('utilityService', function($log, $http, $q) {
     /**
      * this function makes a get request to the url with the given parameter
      */

@@ -1,49 +1,35 @@
-fmt.controller('homeController', function($scope, $log, $http) {
+fmt.controller('homeController', function($scope, $log, $http, utilityService) {
     function wordCloudItem(text, size, sentiment){
         this.text = text;
-        this.weight = size;
+        this.weight = size+5;
         this.html={
             class:sentiment + " word-cloud-item"
         };
-        handlers = {click:$scope.wordClickAction};
+        this.handlers = {
+            click:function(item){       
+                $log.log(text);
+            }};
     }
     
-    $scope.words = [
-      new wordCloudItem("Lorem", 3,"negative"),
-      {text: "Ipsum", weight: 2},
-      {text: "Dolor", weight: 1},
-      {text: "Sit", weight: 2},
-      {text: "Amet", weight: 3},
-      {text: "Consectetur", weight: 3},
-      {text: "Adipiscing", weight: 3},
-      {text: "Elit", weight: 2},
-      {text: "Nam et", weight: 1},
-      {text: "Leo", weight: 3},
-      {text: "Sapien", weight: 2},
-      {text: "Pellentesque", weight: 3},
-      {text: "habitant", weight: 3},
-      {text: "morbi", weight: 3},
-      {text: "tristisque", weight: 3},
-      {text: "senectus", weight: 3},
-      {text: "et netus", weight: 3},
-      {text: "et malesuada", weight: 3},
-      {text: "fames", weight: 2},
-      {text: "ac turpis", weight: 2},
-      {text: "egestas", weight: 2},
-      {text: "Aenean", weight: 2},
-      {text: "vestibulum", weight: 2},
-      {text: "elit", weight: 2},
-      {text: "sit amet", weight: 2},
-      {text: "metus", weight: 2},
-      {text: "adipiscing", weight: 2},
-      {text: "ut ultrices", weight: 2}
-    ];
+    $scope.words = [];
+    
+    utilityService.makeGetRequest("/sentiment", function(response){
+        angular.forEach(response.data.sortedTopicData, function(item){
+            var sentiment;
+            if(item.averageScore < -.5 ){
+                sentiment = "negative";
+            }else if(item.averageScore > .3){
+                sentiment = "positive";
+            }else{
+                sentiment = "neutral";
+            }
+            $scope.words.push(new wordCloudItem(item.topic, item.count, sentiment));
+        });
+    });
     
     $scope.shape = "rectangular";
     
-    $scope.wordClickAction = function(){
-        alert('here');
-    };
+    $scope.fontSize = {from: 0.4, to: 1}; 
     
     function isEmpty(input) {
         if (typeof input == "undefined" || input.trim().length == 0) {
