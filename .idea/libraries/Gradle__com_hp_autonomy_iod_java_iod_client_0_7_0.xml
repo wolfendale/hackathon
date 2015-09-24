@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.hp.autonomy.iod:java-iod-client:0.7.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hp.autonomy.iod/java-iod-client/0.7.0/1ac81735cf48629f0e571825a5249144ed85ded4/java-iod-client-0.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hp.autonomy.iod/java-iod-client/0.7.0/2940f1b4d850e39fab67aca8eeeb3c9b06aab0ba/java-iod-client-0.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
