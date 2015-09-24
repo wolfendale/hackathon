@@ -1,0 +1,26 @@
+.label-width {
+    width: 150px;
+}
+.word-cloud{
+    width:100%;
+    height:400px;
+}
+.negative{
+    color:red !important;
+}
+.positive{
+    color:forestgreen !important;
+}
+.neutral{
+    color:mediumaquamarine !important;
+}
+.word-cloud-item:hover{
+    cursor:pointer;
+}
+.search-button{
+    margin:auto;
+    text-align:center;
+}
+.search-field{
+    width: 500px !important;
+}
