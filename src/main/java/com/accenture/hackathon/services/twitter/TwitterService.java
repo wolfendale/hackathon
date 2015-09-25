@@ -1,11 +1,12 @@
 package com.accenture.hackathon.services.twitter;
 
-import com.accenture.hackathon.models.TweetsResponse;
+import com.accenture.hackathon.models.CacheEntry;
+import com.accenture.hackathon.models.Response;
+import com.accenture.hackathon.services.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import twitter4j.*;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,17 +14,26 @@ import java.util.List;
 public class TwitterService {
 
     @Autowired
-    public TwitterService(Twitter twitter) {
+    public TwitterService(
+            Twitter twitter,
+            CacheService cacheService
+    ) {
         this.twitter = twitter;
+        this.cacheService = cacheService;
     }
 
     final private Twitter twitter;
+    final private CacheService cacheService;
 
-    public TweetsResponse getTweets(String terms) {
+    public List<Status> getTweets(String terms) throws TwitterException {
 
-        try {
+        final List<Status> totalResult = new LinkedList<>();
+        final Response<CacheEntry<List<Status>>> cacheResult = cacheService.getStatus(terms);
 
-            final List<List<Status>> results = new ArrayList<>();
+        if (cacheResult.failed()) {
+
+            System.out.println("Cache miss :(");
+
             long maxId = 0;
 
             for (int i = 0; i < 10; i++) {
@@ -38,20 +48,15 @@ public class TwitterService {
                 final QueryResult result = twitter.search(query);
                 final List<Status> tweets = result.getTweets();
                 maxId = tweets.get(tweets.size() - 1).getId() - 1;
-                results.add(tweets);
+                totalResult.addAll(tweets);
             }
 
-            final List<Status> tweets = new LinkedList<>();
-
-            for (List<Status> result: results) {
-                tweets.addAll(result);
-            }
-
-            return new TweetsResponse(
-                tweets
-            );
-        } catch (TwitterException e) {
-            return new TweetsResponse(e);
+            cacheService.putStatus(terms, totalResult);
+        } else {
+            System.out.println("Cache hit!");
+            totalResult.addAll(cacheResult.getData().getData());
         }
+
+        return totalResult;
     }
 }
