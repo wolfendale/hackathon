@@ -4,14 +4,20 @@ import java.util.List;
 
 public class SentimentData {
 
+    public int positiveCount;
+    public int negativeCount;
+    public int neutralCount;
     private double averageScore;
     private List<TopicData> sortedTopicData;
 
     public SentimentData() {}
 
-    public SentimentData(double averageScore, List<TopicData> sortedTopicData) {
+    public SentimentData(int positiveCount, int negativeCount, int neutralCount, double averageScore, List<TopicData> sortedTopicData) {
         this.averageScore = averageScore;
         this.sortedTopicData = sortedTopicData;
+        this.positiveCount = positiveCount;
+        this.negativeCount = negativeCount;
+        this.neutralCount = neutralCount;
     }
 
     public void setAverageScore(double averageScore) {

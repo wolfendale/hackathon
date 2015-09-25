@@ -3,7 +3,6 @@ package com.accenture.hackathon.processor;
 import com.accenture.hackathon.models.SentimentData;
 import com.accenture.hackathon.models.TopicData;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisEntity;
-import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisResponse;
 
 import java.util.*;
 
@@ -23,7 +22,38 @@ public class SentimentAnalysisProcessor {
             sortedTopics = sortedTopics.subList(0, MAX_TOPIC_COUNT);
         }
         double averageScore = getAverageScore(entities);
-        return new SentimentData(averageScore, sortedTopics);
+        int positiveCount = getPositiveCount(entities);
+        int negativeCount = getNegativeCount(entities);
+        int neutralCount = getNeutralCount(entities);
+        return new SentimentData(positiveCount, negativeCount, neutralCount, averageScore, sortedTopics);
+    }
+
+    private static final double NEUTRAL_THRESHOLD = 0.3;
+    private static int getNegativeCount(List<SentimentAnalysisEntity> entities) {
+        int count = 0;
+        for (SentimentAnalysisEntity entity: entities) {
+            if (entity.getScore() > -NEUTRAL_THRESHOLD) continue;
+            count++;
+        }
+        return count;
+    }
+
+    private static int getPositiveCount(List<SentimentAnalysisEntity> entities) {
+        int count = 0;
+        for (SentimentAnalysisEntity entity: entities) {
+            if (entity.getScore() < NEUTRAL_THRESHOLD) continue;
+            count++;
+        }
+        return count;
+    }
+
+    private static int getNeutralCount(List<SentimentAnalysisEntity> entities) {
+        int count = 0;
+        for (SentimentAnalysisEntity entity: entities) {
+            if (entity.getScore() > NEUTRAL_THRESHOLD || entity.getScore() < -NEUTRAL_THRESHOLD) continue;
+            count++;
+        }
+        return count;
     }
 
     private static List<TopicEntities> getTopicsByCount(List<SentimentAnalysisEntity> entities) {
