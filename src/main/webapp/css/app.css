@@ -34,6 +34,7 @@
     float: right;
     height:600px;
     text-align: center;
+    margin-right: 5%;
 }
 .pie-chart{
     width: 80%;
@@ -44,7 +45,10 @@
     text-align: center;
 }
 h2{
-    color: darkgreen;
+    color: #20457C;
+}
+h3{
+    color: ;
 }
 /* style for loading animation start*/
 
