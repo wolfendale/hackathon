@@ -1,4 +1,4 @@
-fmt.controller('fmtController', function($scope, $log, $http) {
+fmt.controller('fmtController', function($scope, $log, $http, $location, dataService, ApplicationState) {
     
     function isEmpty(input) {
         if (typeof input == "undefined" || input.trim().length == 0) {
@@ -6,10 +6,18 @@ fmt.controller('fmtController', function($scope, $log, $http) {
         }
         return false;
     }
+    
+    $scope.showSearchBar = ApplicationState.showSearchBar;
 
     $scope.doPageRedirect = function(url) {
         location.href = url;
     };
+    
+    $scope.doSearchFn = function(searchQuery){
+        dataService.setEntity(searchQuery);
+        //$location.path('pages/entityDetails.html');
+        $scope.$broadcast('search', searchQuery);
+    }
 
     $scope.alerts = {
         createProject: [

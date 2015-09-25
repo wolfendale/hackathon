@@ -3,9 +3,9 @@
         <div class="search-button">
              <form class="form-inline">
                   <div class="form-group">
-                    <input type="text" class="form-control search-field" id="query" placeholder="Search Twitter" ng-model="searchQuery">
+                    <input type="text" class="form-control search-field" id="query" placeholder="Search" ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && doSearchFn(searchQuery)">
                   </div>
-                  <button ng-click="doSearchFn(searchQuery)" type="button" class="btn btn-primary"  tooltip-popup-delay="500">
+                  <button ng-click="doSearchFn(searchQuery)" type="button" class="btn btn-primary">
                         Search
                     </button>
                 </form>
@@ -13,6 +13,6 @@
         <div ng-show="showLoading">
             <div class="loading-animation"><h2>Loading...</h2></div>
         </div>
-        <jqcloud class="word-cloud" words="words" steps="10" shape="{{shape}}" fontSize="fontSize"></jqcloud>
+        <jqcloud class="word-cloud" words="words" steps="10" shape="{{shape}}"></jqcloud>
     </div>
 </div>

@@ -15,3 +15,7 @@ fmt.config(function($routeProvider) {
                 controller  : 'homeController'
             });
     });
+
+fmt.value("ApplicationState", {
+    showSearchBar: false
+});
