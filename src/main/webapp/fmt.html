@@ -32,7 +32,7 @@
               <a class="navbar-brand" href="#/pages/home.html">Opinion Analysis Tool</a>
             </div>
             <div ng-cloak>
-                <form class="navbar-form pull-left" ng-show="showSearchBar">
+                <form class="navbar-form pull-left" ng-show="ApplicationState.showSearchBar">
                   <input type="text" class="span2" ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && doSearchFn(searchQuery)">
                   <button type="button" ng-click="doSearchFn(searchQuery)" type="button" class="btn btn-primary btn-sm">Search</button>   
                 </form>

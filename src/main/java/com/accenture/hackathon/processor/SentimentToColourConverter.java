@@ -1,9 +1,5 @@
 package com.accenture.hackathon.processor;
 
-import java.util.List;
-import java.awt.*;
-import com.accenture.hackathon.models.SentimentData;
-
 public class SentimentToColourConverter {
     private static final int BASE_COLOUR = 120;
 
@@ -17,7 +13,7 @@ public class SentimentToColourConverter {
             g = (int) ((255 - BASE_COLOUR) * (sentimentValue*sentimentValue) + BASE_COLOUR);
             b = (int) (BASE_COLOUR + -BASE_COLOUR * sentimentValue);
         } else if (sentimentValue < 0) {
-            r = (int) ((255 - BASE_COLOUR) * -(sentimentValue*sentimentValue) + BASE_COLOUR);
+            r = (int) ((255 - BASE_COLOUR) * (sentimentValue*sentimentValue) + BASE_COLOUR);
             g = (int) (BASE_COLOUR + -BASE_COLOUR * -sentimentValue);
             b = (int) (BASE_COLOUR + -BASE_COLOUR * -sentimentValue);
         } else {

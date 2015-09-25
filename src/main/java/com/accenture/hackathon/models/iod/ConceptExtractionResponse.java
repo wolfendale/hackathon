@@ -2,27 +2,27 @@ package com.accenture.hackathon.models.iod;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
 import java.util.List;
 
-@Data
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @JsonDeserialize(builder = ConceptExtractionResponse.Builder.class)
 public class ConceptExtractionResponse {
+
+    public ConceptExtractionResponse(List<Concept> concepts) {
+        this.concepts = concepts;
+    }
 
     private final List<Concept> concepts;
 
     @JsonPOJOBuilder(withPrefix = "set")
-    @Setter
-    @Accessors(chain = true)
     public static class Builder {
 
         private List<Concept> concepts;
+
+        public Builder setConcepts(List<Concept> concepts) {
+            this.concepts = concepts;
+            return this;
+        }
 
         public ConceptExtractionResponse build() {
             return new ConceptExtractionResponse(concepts);

@@ -16,8 +16,8 @@ public class SentimentAnalysisProcessor {
     /**
      * Provide some meaningful data / statistics etc. to go the frontend
      */
-    public static SentimentData process(List<SentimentAnalysisEntity> entities) {
-        List<TopicData> sortedTopics = getTopicList(entities);
+    public static SentimentData process(List<String> originalMessages, List<SentimentAnalysisEntity> entities) {
+        List<TopicData> sortedTopics = getTopicList(originalMessages, entities);
         if (sortedTopics.size() > MAX_TOPIC_COUNT) {
             sortedTopics = sortedTopics.subList(0, MAX_TOPIC_COUNT);
         }
@@ -84,15 +84,66 @@ public class SentimentAnalysisProcessor {
         return topicEntities;
     }
 
-    private static List<TopicData> getTopicList(List<SentimentAnalysisEntity> entities) {
+    private static List<TopicData> getTopicList(List<String> originalMessages, List<SentimentAnalysisEntity> entities) {
         List<TopicEntities> topicEntities = getTopicsByCount(entities);
         List<TopicData> topicData = new ArrayList<>(topicEntities.size());
         for (TopicEntities t: topicEntities) {
             double averageScore = getAverageScore(t.entities);
             String colour = SentimentToColourConverter.generateColor(averageScore);
-            topicData.add(new TopicData(t.topic, t.getCount(), averageScore, colour));
+            topicData.add(new TopicData(t.topic, t.getCount(), averageScore, colour, getAverageOriginalMessages(originalMessages, t)));
         }
         return topicData;
+    }
+
+    private static List<String> getAverageOriginalMessages(List<String> originalMessages, TopicEntities topicEntities) {
+        List<String> messageList = getOriginalMessagesFromTopic(originalMessages, topicEntities);
+        HashMap<String, Integer> commentCountMap = new HashMap<>();
+        for (String msg : messageList) {
+            Integer count = commentCountMap.get(msg);
+            commentCountMap.put(msg, count == null ? 1 : count + 1);
+        }
+
+        List<MessageCounts> messageCounts = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : commentCountMap.entrySet()) {
+            messageCounts.add(new MessageCounts(entry.getKey(), entry.getValue()));
+        }
+
+        //sort original msgs by count
+        Collections.sort(messageCounts, new Comparator<MessageCounts>() {
+            @Override
+            public int compare(MessageCounts o1, MessageCounts o2) {
+                return o2.count - o1.count;
+            }
+        });
+
+        List<String> orderedMsgs = new ArrayList<>();
+        for (MessageCounts messageCount : messageCounts) {
+            orderedMsgs.add(messageCount.originalMsg);
+        }
+
+        if (orderedMsgs.size() > 5) {
+            orderedMsgs = orderedMsgs.subList(0, 5);
+        }
+
+        return orderedMsgs;
+    }
+
+    private static List<String> getOriginalMessagesFromTopic(List<String> originalMessages, TopicEntities topicEntities) {
+        List<String> strs = new ArrayList<>();
+        for (SentimentAnalysisEntity entity: topicEntities.entities) {
+            String msg = getOriginalMessage(originalMessages, entity);
+            if (msg != null) strs.add(msg);
+        }
+        return strs;
+    }
+
+    private static String getOriginalMessage(List<String> originalMessages, SentimentAnalysisEntity entity) {
+        for (String originalMsg : originalMessages) {
+            if (originalMsg.contains(entity.getOriginalText())) {
+                return originalMsg;
+            }
+        }
+        return null;
     }
 
     private static double getAverageScore(List<SentimentAnalysisEntity> entities) {
@@ -118,6 +169,16 @@ public class SentimentAnalysisProcessor {
 
         public int getCount() {
             return entities == null ? 0 : entities.size();
+        }
+    }
+
+    private static class MessageCounts {
+        private String originalMsg;
+        private int count;
+
+        MessageCounts(String originalMsg, int count) {
+            this.originalMsg = originalMsg;
+            this.count = count;
         }
     }
 }

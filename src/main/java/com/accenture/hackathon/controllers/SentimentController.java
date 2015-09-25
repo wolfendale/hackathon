@@ -46,7 +46,7 @@ public class SentimentController {
         List<SentimentAnalysisEntity> entities = sentimentApiBatch.getSentimentAnalysis(feedbackComments);
 
         //processing responses into meaningful data
-        return SentimentAnalysisProcessor.process(entities);
+        return SentimentAnalysisProcessor.process(feedbackComments, entities);
     }
 
     @RequestMapping("/twitter-sentiment/{query}")
@@ -63,7 +63,7 @@ public class SentimentController {
 
             final List<SentimentAnalysisEntity> entities = sentimentApiBatch.getSentimentAnalysis(comments);
             return new Response<SentimentData>(
-                SentimentAnalysisProcessor.process(entities)
+                SentimentAnalysisProcessor.process(comments, entities)
             );
         } catch (TwitterException e) {
             return new Response<>(e);
