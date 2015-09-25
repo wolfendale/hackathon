@@ -1,4 +1,4 @@
-package com.accenture.hackathon.batch;
+package com.accenture.hackathon.batch.datasource;
 
 import java.util.List;
 import java.util.Map;

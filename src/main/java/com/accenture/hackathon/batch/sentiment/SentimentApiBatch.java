@@ -1,4 +1,4 @@
-package com.accenture.hackathon.batch;
+package com.accenture.hackathon.batch.sentiment;
 
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisEntity;
 

@@ -1,18 +1,16 @@
 package com.accenture.hackathon.controllers;
 
-import com.accenture.hackathon.batch.FeedbackBatch;
-import com.accenture.hackathon.batch.SentimentApiBatch;
+import com.accenture.hackathon.batch.datasource.FeedbackBatch;
+import com.accenture.hackathon.batch.sentiment.SentimentApiBatch;
 import com.accenture.hackathon.models.SentimentData;
 import com.accenture.hackathon.processor.SentimentAnalysisProcessor;
 import com.accenture.hackathon.services.SentimentService;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisEntity;
-import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
