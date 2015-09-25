@@ -7,7 +7,7 @@ fmt.controller('fmtController', function($scope, $log, $http, $location, dataSer
         return false;
     }
     
-    $scope.showSearchBar = ApplicationState.showSearchBar;
+    $scope.ApplicationState = ApplicationState;
 
     $scope.doPageRedirect = function(url) {
         location.href = url;
