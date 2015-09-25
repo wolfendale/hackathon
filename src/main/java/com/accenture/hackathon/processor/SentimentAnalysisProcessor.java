@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class SentimentAnalysisProcessor {
 
-    private static int MAX_TOPIC_COUNT = 16;
+    private static int MAX_TOPIC_COUNT = 30;
 
     /**
      * Provide some meaningful data / statistics etc. to go the frontend

@@ -24,3 +24,65 @@
 .search-field{
     width: 500px !important;
 }
+.cloud-div{
+    text-align: center;
+    width: 50%;
+    float: left;
+}
+.pie-chart-div{
+    width: 35%;
+    float: right;
+    height:600px;
+    text-align: center;
+}
+.pie-chart{
+    width: 80%;
+    height: 600px;
+    margin-right: 20%;
+}
+.center-text{
+    text-align: center;
+}
+h2{
+    color: darkgreen;
+}
+/* style for loading animation start*/
+
+@keyframes glowanimation {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .25
+    }
+    100% {
+        opacity: 1
+    }
+}
+@-moz-keyframes glowanimation {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .25
+    }
+    100% {
+        opacity: 1
+    }
+}
+@-webkit-keyframes glowanimation {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .25
+    }
+    100% {
+        opacity: 1
+    }
+}
+.loading-animation {
+    -webkit-animation: glowanimation 2s infinite;
+    animation: glowanimation 2s infinite;
+    text-align: center;
+}

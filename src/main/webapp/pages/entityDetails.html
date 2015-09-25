@@ -1,0 +1,19 @@
+<div class="panel panel-success">
+    <div class="panel-body">
+        <div class="center-text"><h2>{{searchQuery}}</h2></div>
+        <div class="cloud-div">
+            <h3>Associated Words</h3>
+            <div ng-show="showLoading">
+                <div class="loading-animation"><h2>Loading...</h2></div>
+            </div>
+             <jqcloud class="word-cloud" words="words" steps="10" shape="{{shape}}" fontSize="fontSize"></jqcloud>
+        </div>
+        <div class="pie-chart-div">
+            <h3>Overall Score</h3>
+            <div ng-show="showLoading">
+                <div class="loading-animation"><h2>Loading...</h2></div>
+            </div>
+            <pie-chart class="pie-chart" data="pieChart.data" options="pieChart.options"></pie-chart>
+        </div>        
+    </div>
+</div>

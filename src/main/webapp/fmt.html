@@ -7,6 +7,8 @@
     <title>FMT</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/pie-chart.css">
+    
     <link rel="stylesheet" href="css/jqcloud.min.css">
     <style>
         [ng-cloak] {
@@ -27,10 +29,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Feedback Management Tool</a>
+              <a class="navbar-brand" href="#/pages/home.html">Opinion Analysis Tool</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- Collect the nav links, forms, and other content for toggling 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li class="divider-vertical"></li>
@@ -41,6 +43,7 @@
                 <li><a href="#">Feedback Overview</a></li>
               </ul>   
             </div>
+            -->
           </div>
         </nav>
         <div id="main">
@@ -56,11 +59,14 @@
 <script src="js/libs/ui-bootstrap-tpls.min.js"></script>
 <script src="js/libs/angular-route.min.js"></script>
 <script src="js/libs/jquery.js"></script>
-<script src="js/libs/jqcloud.min.js"></script>
+<script src="js/libs/jqcloud.js"></script>
 <script src="js/libs/angular-jqcloud.js"></script>
+<script src="js/libs/pie-chart.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/controllers/homeController.js"></script>
 <script src="js/controllers/fmtController.js"></script>
 <script src="js/services/utiliityService.js"></script>
-<script src="js/controllers/feedbackCategoriesController.js"></script>
+<script src="js/services/dataService.js"></script>
+<script src="js/controllers/entityDetailsController.js"></script>
+<script src="js/libs/d3.min.js" charset="utf-8"></script>
 
