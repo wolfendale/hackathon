@@ -16,11 +16,8 @@ public class SentimentAnalysisProcessor {
      * Provide some meaningful data / statistics etc. to go the frontend
      */
     public static SentimentData process(List<SentimentAnalysisEntity> entities) {
-        //TODO create some meaningful data
-
         List<TopicData> sortedTopics = getTopicList(entities);
         double averageScore = getAverageScore(entities);
-
         return new SentimentData(averageScore, sortedTopics);
     }
 
@@ -28,7 +25,6 @@ public class SentimentAnalysisProcessor {
         //count topics
         HashMap<String, List<SentimentAnalysisEntity>> topicCountMap = new HashMap<>(entities.size());
         for (SentimentAnalysisEntity entity: entities) {
-            //TODO here - is this information ok to ignore or should be put in summary somehow?
             if (entity.getTopic() == null || entity.getTopic().trim().isEmpty()) continue;
             List<SentimentAnalysisEntity> topicEntities = topicCountMap.get(entity.getTopic());
             if (topicEntities == null) {

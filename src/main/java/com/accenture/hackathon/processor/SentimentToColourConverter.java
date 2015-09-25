@@ -7,29 +7,25 @@ import com.accenture.hackathon.models.SentimentData;
 public class SentimentToColourConverter {
     public static String generateColor(double sentimentValue){
 
-        int R = 128;
-        int G = 128;
-        int B = 128;
+        int r;
+        int g;
+        int b;
 
         if (sentimentValue > 0) {
-
-            R -= 127 * sentimentValue;
-            G += 127 * sentimentValue;
-            B -= 127 * sentimentValue;
-
+            r = (int) (120 + -120 * sentimentValue);
+            g = (int) ((255 - 120) * sentimentValue + 120);
+            b = (int) (120 + -120 * sentimentValue);
         } else if (sentimentValue < 0) {
-
-            R += 127 * sentimentValue;
-            G -= 127 * sentimentValue;
-            B -= 127 * sentimentValue;
-
+            r = (int) ((255 - 120) * -sentimentValue + 120);
+            g = (int) (120 + -120 * -sentimentValue);
+            b = (int) (120 + -120 * -sentimentValue);
         } else {
-            R = 120;
-            G = 120;
-            B = 120;
+            r = 120;
+            g = 120;
+            b = 120;
         }
 
-        return String.format("#%02X%02X%02X", R, G, B);
+        return String.format("#%02X%02X%02X", r, g, b);
     }
 
 
