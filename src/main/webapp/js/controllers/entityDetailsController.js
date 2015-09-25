@@ -24,7 +24,7 @@ fmt.controller('entityDetailsController', function($scope, $log, utilityService,
     
     $scope.showLoading = true;
     
-    utilityService.makeGetRequest("/sentiment", function(response){
+    utilityService.makeGetRequest("/twitter-sentiment/"+$scope.searchQuery, function(response){
         $scope.showLoading = false;
         $scope.pieChart.data = [
               {label: "negative", value: 12.2, color: "red"}, 

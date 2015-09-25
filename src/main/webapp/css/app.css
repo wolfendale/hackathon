@@ -40,6 +40,9 @@
     height: 600px;
     margin-right: 20%;
 }
+.center-text{
+    text-align: center;
+}
 h2{
     color: darkgreen;
 }
