@@ -26,23 +26,26 @@
 }
 .cloud-div{
     text-align: center;
-    width: 50%;
+    width: 55%;
     float: left;
 }
 .pie-chart-div{
-    width: 35%;
+    width: 30%;
     float: right;
-    height:550px;
+    height:500px;
     text-align: center;
     margin-right: 5%;
 }
 .pie-chart{
     width: 80%;
-    height: 550px;
+    height: 500px;
     margin-right: 20%;
 }
 .center-text{
     text-align: center;
+}
+.no-margin-top{
+    margin-top: 0px !important;
 }
 h2{
     color: #20457C;
@@ -89,4 +92,14 @@ h3{
     -webkit-animation: glowanimation 2s infinite;
     animation: glowanimation 2s infinite;
     text-align: center;
+    color: dodgerblue !important;
+}
+.description-div {
+    height: 500px;
+    vertical-align:middle;
+    line-height: 500px;
+}
+.description-div > h2{
+  display: inline-block;
+  vertical-align: middle;
 }

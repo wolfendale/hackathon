@@ -82,7 +82,7 @@ fmt.controller('entityDetailsController', function($scope, $log, utilityService,
         $log.log(searchQuery);
     }
     
-    $scope.shape = "rectangular";
+    $scope.shape = "elliptical";
     
     //$scope.fontSize = {from: 0.4, to: 1}; 
 

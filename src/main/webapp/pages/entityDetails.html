@@ -1,6 +1,6 @@
 <div class="panel panel-success">
     <div class="panel-body">
-        <div class="center-text"><h2>Results for {{searchQuery}}</h2></div>
+        <div class="center-text"><h2 class="no-margin-top">Results for {{searchQuery}}</h2></div>
         <div class="cloud-div">
             <h3>Associated Words</h3>
             <div ng-show="showLoading">
@@ -9,7 +9,7 @@
              <jqcloud class="word-cloud" words="words" steps="10" shape="{{shape}}"></jqcloud>
         </div>
         <div class="pie-chart-div">
-            <h3>Overall Scores</h3>
+            <h3 class="no-margin-top">Overall Scores</h3>
             <div ng-show="showLoading">
                 <div class="loading-animation"><h2>Loading...</h2></div>
             </div>
