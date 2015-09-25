@@ -20,6 +20,16 @@ public class Concept {
         private String concept;
         private int occurences;
 
+        public Builder setConcept(String concept) {
+            this.concept = concept;
+            return this;
+        }
+
+        public Builder setOccurences(int occurences) {
+            this.occurences = occurences;
+            return this;
+        }
+
         public Concept build() {
             return new Concept(concept, occurences);
         }

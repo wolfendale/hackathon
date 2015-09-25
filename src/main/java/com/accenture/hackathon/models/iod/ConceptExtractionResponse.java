@@ -19,6 +19,11 @@ public class ConceptExtractionResponse {
 
         private List<Concept> concepts;
 
+        public Builder setConcepts(List<Concept> concepts) {
+            this.concepts = concepts;
+            return this;
+        }
+
         public ConceptExtractionResponse build() {
             return new ConceptExtractionResponse(concepts);
         }
