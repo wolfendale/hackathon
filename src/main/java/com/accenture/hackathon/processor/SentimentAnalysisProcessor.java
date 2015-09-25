@@ -57,7 +57,9 @@ public class SentimentAnalysisProcessor {
         List<TopicEntities> topicEntities = getTopicsByCount(entities);
         List<TopicData> topicData = new ArrayList<>(topicEntities.size());
         for (TopicEntities t: topicEntities) {
-            topicData.add(new TopicData(t.topic, t.getCount(), getAverageScore(t.entities)));
+            double averageScore = getAverageScore(t.entities);
+            String colour = SentimentToColourConverter.generateColor(averageScore);
+            topicData.add(new TopicData(t.topic, t.getCount(), averageScore, colour));
         }
         return topicData;
     }

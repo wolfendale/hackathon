@@ -1,11 +1,10 @@
-package com.accenture.hackathon.models;
+package com.accenture.hackathon.processor;
 
 import java.util.List;
 import java.awt.*;
 import com.accenture.hackathon.models.SentimentData;
 
-public class ColourData {
-
+public class SentimentToColourConverter {
     public static String generateColor(double sentimentValue){
 
         int R = 128;
