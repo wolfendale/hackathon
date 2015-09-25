@@ -1,18 +1,20 @@
 package com.accenture.hackathon.models.iod;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-@Data
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @JsonDeserialize(builder = Concept.Builder.class)
 public class Concept {
+
+    public Concept(String concept, int occurences) {
+        this.concept = concept;
+        this.occurences = occurences;
+    }
 
     private final String concept;
     private final int occurences;
 
+    @JsonPOJOBuilder(withPrefix = "set")
     public static class Builder {
 
         private String concept;
