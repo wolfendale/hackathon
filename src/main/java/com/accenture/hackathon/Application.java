@@ -1,14 +1,11 @@
 package com.accenture.hackathon;
 
-import com.accenture.hackathon.batch.datasource.FeedbackBatch;
 import com.accenture.hackathon.batch.datasource.NewLineCsvBatch;
-import com.accenture.hackathon.batch.datasource.StaticCsvBatch;
-import com.accenture.hackathon.batch.datasource.TestFeedbackBatch;
 import com.accenture.hackathon.batch.sentiment.FileApiWithBatching;
 import com.accenture.hackathon.batch.sentiment.SentimentApiBatch;
 import com.accenture.hackathon.models.APIKey;
 import com.accenture.hackathon.services.SentimentService;
-import com.accenture.hackathon.services.iod.CallbackSentimentAnalysisService;
+import com.accenture.hackathon.services.iod.ConceptExtractionService;
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisService;
 import com.hp.autonomy.iod.client.converter.IodConverter;
 import com.hp.autonomy.iod.client.error.IodErrorHandler;
@@ -43,19 +40,13 @@ public class Application {
     }
 
     @Bean
-    public CallbackSentimentAnalysisService callbackSentimentAnalysisService(RestAdapter restAdapter) {
-         return restAdapter.create(CallbackSentimentAnalysisService.class);
-    }
-
-    @Bean
     public SentimentAnalysisService sentimentAnalysisService(RestAdapter restAdapter) {
         return restAdapter.create(SentimentAnalysisService.class);
     }
 
     @Bean
-    public FeedbackBatch feedbackBatch() {
-        //return new TestFeedbackBatch();
-        return new NewLineCsvBatch("resource/testdata2.csv");
+    public ConceptExtractionService contentExtractionService(RestAdapter restAdapter) {
+        return restAdapter.create(ConceptExtractionService.class);
     }
 
     @Bean
