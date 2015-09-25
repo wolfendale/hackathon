@@ -2,6 +2,7 @@ group 'com.accenture'
 version '0.0.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.7
 
