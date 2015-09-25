@@ -1,4 +1,4 @@
-var fmt = angular.module('fmt', ['ui.bootstrap', 'ngAnimate', 'ngRoute','angular-jqcloud']);
+var fmt = angular.module('fmt', ['ui.bootstrap', 'ngAnimate', 'ngRoute','angular-jqcloud', 'n3-pie-chart']);
 
 fmt.config(function($routeProvider) {
         $routeProvider
@@ -6,9 +6,9 @@ fmt.config(function($routeProvider) {
                 templateUrl : 'pages/home.html',
                 controller  : 'homeController'
             })
-            .when('/pages/feedbackCategories.html', {
-                templateUrl : 'pages/feedbackCategories.html',
-                controller  : 'feedbackCategoriesController'
+            .when('/pages/entityDetails.html', {
+                templateUrl : 'pages/entityDetails.html',
+                controller  : 'entityDetailsController'
             })
             .when('/pages/home.html', {
                 templateUrl : 'pages/home.html',
