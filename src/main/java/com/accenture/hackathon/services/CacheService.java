@@ -3,7 +3,6 @@ package com.accenture.hackathon.services;
 import com.accenture.hackathon.exceptions.CacheTimeoutException;
 import com.accenture.hackathon.models.CacheEntry;
 import com.accenture.hackathon.models.Response;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import twitter4j.Status;

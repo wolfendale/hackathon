@@ -31,6 +31,12 @@
               </button>
               <a class="navbar-brand" href="#/pages/home.html">Opinion Analysis Tool</a>
             </div>
+            <div ng-cloak>
+                <form class="navbar-form pull-left" ng-show="showSearchBar">
+                  <input type="text" class="span2" ng-model="searchQuery" ng-keyup="$event.keyCode == 13 && doSearchFn(searchQuery)">
+                  <button type="button" ng-click="doSearchFn(searchQuery)" type="button" class="btn btn-primary btn-sm">Search</button>   
+                </form>
+            </div>
 
             <!-- Collect the nav links, forms, and other content for toggling 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

@@ -1,4 +1,5 @@
-fmt.controller('homeController', function($scope, $log, $http, $location, utilityService, dataService) {
+fmt.controller('homeController', function($scope, $log, $http, $location, utilityService, dataService, ApplicationState) {
+    ApplicationState.showSearchBar = false;
     function wordCloudItem(text, size, sentiment){
         this.text = text;
         this.weight = size+5;
@@ -32,8 +33,6 @@ fmt.controller('homeController', function($scope, $log, $http, $location, utilit
     });
     
     $scope.shape = "rectangular";
-    
-    $scope.fontSize = {from: 0.4, to: 1};
     
     $scope.doSearchFn = function(searchQuery){
         dataService.setEntity(searchQuery);
