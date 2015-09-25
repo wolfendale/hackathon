@@ -12,11 +12,16 @@ import java.util.*;
  */
 public class SentimentAnalysisProcessor {
 
+    private static int MAX_TOPIC_COUNT = 16;
+
     /**
      * Provide some meaningful data / statistics etc. to go the frontend
      */
     public static SentimentData process(List<SentimentAnalysisEntity> entities) {
         List<TopicData> sortedTopics = getTopicList(entities);
+        if (sortedTopics.size() > MAX_TOPIC_COUNT) {
+            sortedTopics = sortedTopics.subList(0, MAX_TOPIC_COUNT);
+        }
         double averageScore = getAverageScore(entities);
         return new SentimentData(averageScore, sortedTopics);
     }
