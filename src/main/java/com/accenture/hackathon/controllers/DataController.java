@@ -1,13 +1,11 @@
 package com.accenture.hackathon.controllers;
 
-import com.accenture.hackathon.services.TwitterService;
+import com.accenture.hackathon.models.TweetsResponse;
+import com.accenture.hackathon.services.twitter.TwitterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import twitter4j.Status;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class DataController {
@@ -19,13 +17,10 @@ public class DataController {
 
     final private TwitterService twitterService;
 
-    @RequestMapping("/tweets")
-    public List<Status> getTweets() {
-        try {
-            return twitterService.getTweets();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<Status>();
-        }
+    @RequestMapping("/tweets/{query}")
+    public TweetsResponse getTweets(
+        @PathVariable("query") String query
+    ) {
+        return twitterService.getTweets(query);
     }
 }
