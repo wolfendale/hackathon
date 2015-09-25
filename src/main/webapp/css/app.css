@@ -32,13 +32,13 @@
 .pie-chart-div{
     width: 35%;
     float: right;
-    height:600px;
+    height:550px;
     text-align: center;
     margin-right: 5%;
 }
 .pie-chart{
     width: 80%;
-    height: 600px;
+    height: 550px;
     margin-right: 20%;
 }
 .center-text{

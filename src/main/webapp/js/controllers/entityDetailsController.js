@@ -39,14 +39,14 @@ fmt.controller('entityDetailsController', function($scope, $log, utilityService,
             utilityService.makeGetRequest("/twitter-sentiment/"+searchQuery, function(response){
                 $scope.showLoading = false;
                 $scope.pieChart.data = [
-                      {label: "negative", value: 12.2, color: "red"}, 
-                      {label: "neutral", value: 45, color: "lightgrey"},
-                      {label: "positive", value: 10, color: "green"}
+                      {label: "negative", value: response.data.data.positiveCount, color: "red"}, 
+                      {label: "neutral", value: response.data.data.negativeCount , color: "lightgrey"},
+                      {label: "positive", value: response.data.data.neutralCount , color: "green"}
                     ];
 
                 var maxCount = 0, minCount;
 
-                angular.forEach(response.data.sortedTopicData, function(item){
+                angular.forEach(response.data.data.sortedTopicData, function(item){
                     if(item.count != undefined && item.count > maxCount){
                         maxCount = item.count;
                     }
@@ -58,7 +58,7 @@ fmt.controller('entityDetailsController', function($scope, $log, utilityService,
                 maxCount = maxCount - minCount;
                 minCount = 0;
 
-                angular.forEach(response.data.sortedTopicData, function(item){
+                angular.forEach(response.data.data.sortedTopicData, function(item){
                     var size = (item.count-minCount)/maxCount * 10;
                     $scope.words.push(new wordCloudItem(item.topic, size, item.averageScoreColour));
                 });
