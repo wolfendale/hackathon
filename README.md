@@ -36,6 +36,27 @@ Integration – 1 hour
 Testing – 2 hours
 Documentation and Blog Creation – 1 hour
 
+5 words to describe our product
+
+-	Opinion-service
+-	Dynamic
+-	Analytics
+-	Categorisation
+-	Consensus 
+
+<strong>Business purpose</strong>
+
+Customer service/people’s opinions about a given topic is an integral role in every business and in some cases such as Amazon is their main business plan. A huge amount of data is gathered, it would immense amount of time to manually sense of this. This data needs to be viewed and actioned upon in real time. Our solution is operating upon a large repository of comments/reviews then getting snapshot of feelings of the customer and categorise and filter upon topic. The JSON that is generated from the API can allow us to create a graphs and charts to depict the data.
+
+We have generated our own scripts to mine the data as well as calling additional API’s to mine twitter. These data sources are only the beginning. We have the initial text and can operate, generate a sentiment analysis and can be categorised to be distributed to individual teams based on topic. This provides routing for the correct person/team to deal with the customer’s feedback.
+
+Another aim would be to add on API’s such as the speech recognition converts mp3 files into text. Written reviews form some of the customer feedback, we thought that recordings generated from the phone calls with the customer which can generate a before and after picture to give a quantifiable element to customer satisfaction.
+Business intelligence is vital is today’s competitive world. Before launching a product it could become useful to have instant feedback from multiple sources. Sources which could include; twitter, Facebook and other social media. 
+
+With our application we can find out what people care about!
+
+
+
 Progression
 Tools
 Gradle for build, Git repository, Spring MVC server component with Angularjs and bootstrap for the UI components
