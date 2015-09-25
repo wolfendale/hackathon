@@ -1,7 +1,6 @@
 package com.accenture.hackathon.batch;
 
 import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisEntity;
-import com.hp.autonomy.iod.client.api.textanalysis.SentimentAnalysisResponse;
 
 import java.util.List;
 

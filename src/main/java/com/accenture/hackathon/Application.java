@@ -1,9 +1,6 @@
 package com.accenture.hackathon;
 
-import com.accenture.hackathon.batch.FeedbackBatch;
-import com.accenture.hackathon.batch.SentimentApiBatch;
-import com.accenture.hackathon.batch.TestFeedbackBatch;
-import com.accenture.hackathon.batch.TextApiNoBatching;
+import com.accenture.hackathon.batch.*;
 import com.accenture.hackathon.models.APIKey;
 import com.accenture.hackathon.services.SentimentService;
 import com.accenture.hackathon.services.iod.CallbackSentimentAnalysisService;
@@ -70,6 +67,6 @@ public class Application {
 
     @Bean
     public SentimentApiBatch sentimentApiBatch(SentimentService service) {
-        return new TextApiNoBatching(service);
+        return new FileApiWithBatching(service);
     }
 }
