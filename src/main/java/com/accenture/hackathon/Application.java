@@ -20,7 +20,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import retrofit.RestAdapter;
 import retrofit.converter.JacksonConverter;
 import twitter4j.Twitter;
+import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 
 @EnableAsync
 @SpringBootApplication
@@ -62,12 +64,20 @@ public class Application {
     }
 
     @Bean
-    public Twitter twitter() {
-        final Twitter twitter = TwitterFactory.getSingleton();
-        twitter.setOAuthConsumer(
-                "ZZotVk7oHjiHlfMUV0KVnJpNT",
-                "bkMYwz47rNcM7iWSS3AxzsY7RfH9Fh4z3a9GL1clct8edLSsYu"
-        );
+    public Twitter twitter() throws TwitterException {
+
+        final String consumerKey = "ZZotVk7oHjiHlfMUV0KVnJpNT";
+        final String consumerSecret = "bkMYwz47rNcM7iWSS3AxzsY7RfH9Fh4z3a9GL1clct8edLSsYu";
+
+        ConfigurationBuilder builder = new ConfigurationBuilder()
+            .setApplicationOnlyAuthEnabled(true)
+            .setOAuthConsumerKey(consumerKey)
+            .setOAuthConsumerSecret(consumerSecret);
+
+        final Twitter twitter = new TwitterFactory(builder.build()).getInstance();
+
+        twitter.getOAuth2Token();
+
         return twitter;
     }
 
