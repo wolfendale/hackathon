@@ -13,22 +13,6 @@ import java.util.*;
 public class SentimentAnalysisProcessor {
 
     /**
-     * Aggregate all the positive and negative responses into a single list
-     */
-    public static SentimentData processResponses(List<SentimentAnalysisResponse> sentimentAnalysisResponses) {
-        List<SentimentAnalysisEntity> entities = new ArrayList<>();
-        for (SentimentAnalysisResponse response : sentimentAnalysisResponses) {
-            if (response.getNegative() != null) {
-                entities.addAll(response.getNegative());
-            }
-            if (response.getPositive() != null) {
-                entities.addAll(response.getPositive());
-            }
-        }
-        return process(entities);
-    }
-
-    /**
      * Provide some meaningful data / statistics etc. to go the frontend
      */
     public static SentimentData process(List<SentimentAnalysisEntity> entities) {
