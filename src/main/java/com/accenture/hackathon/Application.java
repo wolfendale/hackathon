@@ -1,6 +1,8 @@
 package com.accenture.hackathon;
 
 import com.accenture.hackathon.batch.datasource.FeedbackBatch;
+import com.accenture.hackathon.batch.datasource.NewLineCsvBatch;
+import com.accenture.hackathon.batch.datasource.StaticCsvBatch;
 import com.accenture.hackathon.batch.datasource.TestFeedbackBatch;
 import com.accenture.hackathon.batch.sentiment.FileApiWithBatching;
 import com.accenture.hackathon.batch.sentiment.SentimentApiBatch;
@@ -50,7 +52,8 @@ public class Application {
 
     @Bean
     public FeedbackBatch feedbackBatch() {
-        return new TestFeedbackBatch();
+        //return new TestFeedbackBatch();
+        return new NewLineCsvBatch("resource/testdata2.csv");
     }
 
     @Bean
