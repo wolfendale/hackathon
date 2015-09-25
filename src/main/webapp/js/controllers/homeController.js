@@ -1,4 +1,4 @@
-fmt.controller('homeController', function($scope, $log, $http, utilityService) {
+fmt.controller('homeController', function($scope, $log, $http, $location, utilityService, dataService) {
     function wordCloudItem(text, size, sentiment){
         this.text = text;
         this.weight = size+5;
@@ -12,6 +12,9 @@ fmt.controller('homeController', function($scope, $log, $http, utilityService) {
     }
     
     $scope.words = [];
+    $scope.searchQuery = "";
+    
+    $scope.showLoading = true;
     
     utilityService.makeGetRequest("/sentiment", function(response){
         angular.forEach(response.data.sortedTopicData, function(item){
@@ -24,12 +27,18 @@ fmt.controller('homeController', function($scope, $log, $http, utilityService) {
                 sentiment = "neutral";
             }
             $scope.words.push(new wordCloudItem(item.topic, item.count, sentiment));
+            $scope.showLoading = false;
         });
     });
     
     $scope.shape = "rectangular";
     
-    $scope.fontSize = {from: 0.4, to: 1}; 
+    $scope.fontSize = {from: 0.4, to: 1};
+    
+    $scope.doSearchFn = function(searchQuery){
+        dataService.setEntity(searchQuery);
+        $location.path('pages/entityDetails.html');
+    }
     
     function isEmpty(input) {
         if (typeof input == "undefined" || input.trim().length == 0) {
