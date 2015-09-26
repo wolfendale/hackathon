@@ -65,4 +65,5 @@ Gradle for build, Git repository, Spring MVC server component with Angularjs and
 https://feedbackathon.herokuapp.com/
 
 <strong>Walkthrough</strong>
+https://youtu.be/vzfkMDTIMPg
 
